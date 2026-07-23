@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Account Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="app-shell">
+        <section class="hero">
+            <div>
+                <p class="eyebrow">C++ OOP Project</p>
+                <h1>Bank Account Management System</h1>
+                <p class="intro">
+                    A project demonstrating inheritance, polymorphism, virtual functions,
+                    encapsulation, abstraction and transaction management.
+                </p>
+            </div>
+            <img src="images/bank.png" alt="Bank building illustration">
+        </section>
+
+        <section class="workspace">
+            <aside class="panel account-panel">
+                <h2>Create Account</h2>
+                <form id="accountForm">
+                    <label>
+                        Account Type
+                        <select id="accountType">
+                            <option value="savings">Savings Account</option>
+                            <option value="current">Current Account</option>
+                        </select>
+                    </label>
+                    <label>
+                        Account Number
+                        <input id="accountNumber" type="number" min="1" required>
+                    </label>
+                    <label>
+                        Name
+                        <input id="accountName" type="text" required>
+                    </label>
+                    <label>
+                        Opening Balance
+                        <input id="openingBalance" type="number" min="0" step="0.01" required>
+                    </label>
+                    <label id="rateField">
+                        Interest Rate (%)
+                        <input id="interestRate" type="number" min="0" step="0.01" value="5">
+                    </label>
+                    <label id="overdraftField" class="hidden">
+                        Overdraft Limit
+                        <input id="overdraftLimit" type="number" min="0" step="0.01" value="1000">
+                    </label>
+                    <button type="submit">Create Account</button>
+                </form>
+            </aside>
+
+            <section class="panel actions-panel">
+                <h2>Bank Operations</h2>
+                <div class="account-selectors">
+                    <label>
+                        Active Account
+                        <select id="activeAccount"></select>
+                    </label>
+                    <label>
+                        Transfer To
+                        <select id="targetAccount"></select>
+                    </label>
+                </div>
+
+                <div class="button-grid">
+                    <button data-action="deposit">Deposit</button>
+                    <button data-action="withdraw">Withdraw</button>
+                    <button data-action="transfer">Transfer</button>
+                    <button data-action="interest">Add Interest</button>
+                    <button data-action="details">Show Details</button>
+                    <button data-action="history">Transaction History</button>
+                </div>
+
+                <label class="amount-field">
+                    Amount
+                    <input id="amount" type="number" min="0.01" step="0.01" value="1000">
+                </label>
+
+                <div id="message" class="message">Create an account to begin.</div>
+            </section>
+        </section>
+
+        <section class="panel table-panel">
+            <h2>Accounts</h2>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Number</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Balance</th>
+                            <th>Extra</th>
+                        </tr>
+                    </thead>
+                    <tbody id="accountsTable"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
