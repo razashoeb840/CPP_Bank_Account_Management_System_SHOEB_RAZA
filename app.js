@@ -44,15 +44,15 @@ function render() {
         .map((account) => {
             const extra = account.type === "Savings"
                 ? `Interest: ${account.interestRate}%`
-                : `Overdraft: ${money(account.overdraftLimit)}`;
+                : `Overdraft: $${money(account.overdraftLimit)}`;
 
             return `
                 <tr>
-                    <td>${account.number}</td>
+                    <td>#${account.number}</td>
                     <td>${account.name}</td>
-                    <td>${account.type}</td>
-                    <td>${money(account.balance)}</td>
-                    <td>${extra}</td>
+                    <td><span class="account-badge ${account.type.toLowerCase()}">${account.type}</span></td>
+                    <td>$${money(account.balance)}</td>
+                    <td><span class="extra-info">${extra}</span></td>
                 </tr>
             `;
         })

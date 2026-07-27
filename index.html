@@ -3,107 +3,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bank Account Management System</title>
+    <title>Apex Bank - Account Management Console</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <main class="app-shell">
-        <section class="hero">
-            <div>
-                <p class="eyebrow">C++ OOP Project</p>
-                <h1>Bank Account Management System</h1>
-                <p class="intro">
-                    A project demonstrating inheritance, polymorphism, virtual functions,
-                    encapsulation, abstraction and transaction management.
-                </p>
+<body class="bank-app-body">
+
+    <!-- Top Clean Brand Header (No navbar links) -->
+    <header class="app-brand-header">
+        <div class="header-inner">
+            <div class="brand-group">
+                <div class="brand-logo-icon">
+                    <i class="fa-solid fa-building-columns"></i>
+                </div>
+                <div class="brand-titles">
+                    <span class="brand-name">APEX<span class="brand-accent">BANK</span></span>
+                    <span class="brand-tag">C++ OOP Polymorphic Architecture</span>
+                </div>
             </div>
-            <img src="images/bank.png" alt="Bank building illustration">
-        </section>
 
-        <section class="workspace">
-            <aside class="panel account-panel">
-                <h2>Create Account</h2>
-                <form id="accountForm">
-                    <label>
-                        Account Type
-                        <select id="accountType">
-                            <option value="savings">Savings Account</option>
-                            <option value="current">Current Account</option>
-                        </select>
-                    </label>
-                    <label>
-                        Account Number
-                        <input id="accountNumber" type="number" min="1" required>
-                    </label>
-                    <label>
-                        Name
-                        <input id="accountName" type="text" required>
-                    </label>
-                    <label>
-                        Opening Balance
-                        <input id="openingBalance" type="number" min="0" step="0.01" required>
-                    </label>
-                    <label id="rateField">
-                        Interest Rate (%)
-                        <input id="interestRate" type="number" min="0" step="0.01" value="5">
-                    </label>
-                    <label id="overdraftField" class="hidden">
-                        Overdraft Limit
-                        <input id="overdraftLimit" type="number" min="0" step="0.01" value="1000">
-                    </label>
-                    <button type="submit">Create Account</button>
+            <div class="system-status-badge">
+                <span class="status-dot"></span>
+                <span class="status-label">System Active</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Workspace Container -->
+    <main class="app-workspace">
+        
+        <!-- Top 2-Column Dashboard Grid: Left Form + Right Operations -->
+        <div class="dashboard-top-grid">
+            
+            <!-- LEFT COLUMN: Account Registration Card -->
+            <section class="card registration-card">
+                <div class="card-header">
+                    <div class="card-icon text-emerald">
+                        <i class="fa-solid fa-user-plus"></i>
+                    </div>
+                    <div>
+                        <h2 class="card-title">Account Registration</h2>
+                        <p class="card-subtitle">Create a new savings or current profile</p>
+                    </div>
+                </div>
+
+                <form id="accountForm" class="account-form">
+                    <div class="form-group">
+                        <label for="accountType" class="input-label">
+                            <i class="fa-solid fa-layer-group"></i> Account Type
+                        </label>
+                        <div class="select-wrapper">
+                            <select id="accountType">
+                                <option value="savings">Savings Account (5% Interest Rate)</option>
+                                <option value="current">Current Account ($1000 Overdraft Limit)</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down select-caret"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="accountNumber" class="input-label">
+                            <i class="fa-solid fa-id-card"></i> Account Number
+                        </label>
+                        <input id="accountNumber" type="number" min="1" placeholder="e.g. 1001" required class="input-field">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="accountName" class="input-label">
+                            <i class="fa-solid fa-user"></i> Account Name
+                        </label>
+                        <input id="accountName" type="text" placeholder="e.g. Eleanor Vance" required class="input-field">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="openingBalance" class="input-label">
+                            <i class="fa-solid fa-vault"></i> Opening Balance ($)
+                        </label>
+                        <input id="openingBalance" type="number" min="0" step="0.01" placeholder="0.00" required class="input-field">
+                    </div>
+
+                    <div class="form-group" id="rateField">
+                        <label for="interestRate" class="input-label">
+                            <i class="fa-solid fa-chart-line"></i> Interest Rate (%)
+                        </label>
+                        <input id="interestRate" type="number" min="0" step="0.01" value="5" class="input-field">
+                    </div>
+
+                    <div class="form-group hidden" id="overdraftField">
+                        <label for="overdraftLimit" class="input-label">
+                            <i class="fa-solid fa-shield-halved"></i> Overdraft Limit ($)
+                        </label>
+                        <input id="overdraftLimit" type="number" min="0" step="0.01" value="1000" class="input-field">
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <span>Create Account</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
                 </form>
-            </aside>
-
-            <section class="panel actions-panel">
-                <h2>Bank Operations</h2>
-                <div class="account-selectors">
-                    <label>
-                        Active Account
-                        <select id="activeAccount"></select>
-                    </label>
-                    <label>
-                        Transfer To
-                        <select id="targetAccount"></select>
-                    </label>
-                </div>
-
-                <div class="button-grid">
-                    <button data-action="deposit">Deposit</button>
-                    <button data-action="withdraw">Withdraw</button>
-                    <button data-action="transfer">Transfer</button>
-                    <button data-action="interest">Add Interest</button>
-                    <button data-action="details">Show Details</button>
-                    <button data-action="history">Transaction History</button>
-                </div>
-
-                <label class="amount-field">
-                    Amount
-                    <input id="amount" type="number" min="0.01" step="0.01" value="1000">
-                </label>
-
-                <div id="message" class="message">Create an account to begin.</div>
             </section>
-        </section>
 
-        <section class="panel table-panel">
-            <h2>Accounts</h2>
+            <!-- RIGHT COLUMN: Banking Operations & Console Stream Card -->
+            <section class="card operations-card">
+                <div class="card-header">
+                    <div class="card-icon text-cyan">
+                        <i class="fa-solid fa-sliders"></i>
+                    </div>
+                    <div>
+                        <h2 class="card-title">Banking Operations</h2>
+                        <p class="card-subtitle">Select accounts & execute transaction operations</p>
+                    </div>
+                </div>
+
+                <!-- Account Selection Controls Grid -->
+                <div class="account-select-grid">
+                    <div class="form-group">
+                        <label for="activeAccount" class="input-label">
+                            <i class="fa-solid fa-user-check"></i> Source Account
+                        </label>
+                        <div class="select-wrapper">
+                            <select id="activeAccount"></select>
+                            <i class="fa-solid fa-chevron-down select-caret"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="targetAccount" class="input-label">
+                            <i class="fa-solid fa-paper-plane"></i> Target Account
+                        </label>
+                        <div class="select-wrapper">
+                            <select id="targetAccount"></select>
+                            <i class="fa-solid fa-chevron-down select-caret"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Amount Control Input & Presets -->
+                <div class="amount-control-box">
+                    <div class="form-group">
+                        <label for="amount" class="input-label">
+                            <i class="fa-solid fa-money-bill-wave"></i> Transaction Amount ($)
+                        </label>
+                        <div class="amount-input-wrapper">
+                            <span class="currency-tag">$</span>
+                            <input id="amount" type="number" min="0.01" step="0.01" value="1000" class="input-field mono-field">
+                        </div>
+                    </div>
+
+                    <div class="preset-strip">
+                        <span class="preset-label">Presets:</span>
+                        <button type="button" class="preset-btn" onclick="document.getElementById('amount').value=100">$100</button>
+                        <button type="button" class="preset-btn" onclick="document.getElementById('amount').value=500">$500</button>
+                        <button type="button" class="preset-btn" onclick="document.getElementById('amount').value=1000">$1000</button>
+                        <button type="button" class="preset-btn" onclick="document.getElementById('amount').value=5000">$5000</button>
+                    </div>
+                </div>
+
+                <!-- Mandatory Button Grid for app.js -->
+                <div class="button-grid">
+                    <button data-action="deposit" class="action-btn btn-deposit">
+                        <i class="fa-solid fa-down-left-and-up-right-to-center"></i>
+                        <span>Deposit</span>
+                    </button>
+                    <button data-action="withdraw" class="action-btn btn-withdraw">
+                        <i class="fa-solid fa-up-right-from-square"></i>
+                        <span>Withdraw</span>
+                    </button>
+                    <button data-action="transfer" class="action-btn btn-transfer">
+                        <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                        <span>Transfer</span>
+                    </button>
+                    <button data-action="interest" class="action-btn btn-interest">
+                        <i class="fa-solid fa-percent"></i>
+                        <span>Add Interest</span>
+                    </button>
+                    <button data-action="details" class="action-btn btn-details">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <span>Show Details</span>
+                    </button>
+                    <button data-action="history" class="action-btn btn-history">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        <span>History Log</span>
+                    </button>
+                </div>
+
+                <!-- Terminal Log Display Box -->
+                <div class="console-terminal">
+                    <div class="console-bar">
+                        <span class="console-title"><i class="fa-solid fa-terminal"></i> Execution Console</span>
+                        <span class="console-pulse"></span>
+                    </div>
+                    <div id="message" class="message">Create an account to begin.</div>
+                </div>
+            </section>
+        </div>
+
+        <!-- BOTTOM SECTION: Accounts Ledger Table -->
+        <section class="card ledger-card">
+            <div class="card-header">
+                <div class="card-icon text-violet">
+                    <div class="icon-inner"><i class="fa-solid fa-database"></i></div>
+                </div>
+                <div>
+                    <h2 class="card-title">Live Accounts Ledger</h2>
+                    <p class="card-subtitle">Real-time registered accounts database table</p>
+                </div>
+            </div>
+
             <div class="table-wrap">
-                <table>
+                <table class="ledger-table">
                     <thead>
                         <tr>
-                            <th>Number</th>
+                            <th>Acc #</th>
                             <th>Name</th>
                             <th>Type</th>
                             <th>Balance</th>
-                            <th>Extra</th>
+                            <th>Parameter Extra</th>
                         </tr>
                     </thead>
-                    <tbody id="accountsTable"></tbody>
+                    <tbody id="accountsTable">
+                        <!-- Populated by app.js -->
+                    </tbody>
                 </table>
             </div>
         </section>
     </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026 Apex Bank Management System. Powered by C++ Polymorphic Engine.</p>
+    </footer>
 
     <script src="app.js"></script>
 </body>
