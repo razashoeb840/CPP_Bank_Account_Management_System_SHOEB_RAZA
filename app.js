@@ -1,5 +1,4 @@
 const accounts = new Map();
-
 const accountType = document.getElementById("accountType");
 const rateField = document.getElementById("rateField");
 const overdraftField = document.getElementById("overdraftField");
