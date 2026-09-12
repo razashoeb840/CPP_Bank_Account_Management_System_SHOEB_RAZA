@@ -1,76 +1,57 @@
 # 🏦 Bank Account Management System
 
-Welcome to the **Bank Account Management System** — a hybrid Banking Software Solution providing both a robust, object-oriented **C++ Console Application Core** and an interactive, modern **Web Dashboard Interface** (HTML5/CSS3/JavaScript).
-
-Designed for speed, reliability, and ease of use, this project demonstrates core banking operations such as account creation, deposit, withdrawal with overdraft management, inter-account funds transfer, interest compounding, and complete transaction history logging.
+Welcome to the **Bank Account Management System** — a hybrid Banking Software Solution providing both a robust, object-oriented **C++ Console Application** and an interactive, modern **Web Dashboard** (HTML5/CSS3/JavaScript).
 
 ---
 
 ## 📌 Table of Contents
 1. [🎯 Project Purpose](#-project-purpose)
 2. [✨ Key Features](#-key-features)
-3. [🛠️ Tech Stack & Architecture](#️-tech-stack--architecture)
+3. [🛠️ Tech Stack](#️-tech-stack)
 4. [📂 Directory Structure](#-directory-structure)
 5. [🔄 System Workflow](#-system-workflow)
 6. [🚀 How to Run](#-how-to-run)
-   - [Option 1: C++ Console Application](#option-1-c-console-application)
-   - [Option 2: Web Dashboard Interface](#option-2-web-dashboard-interface)
 7. [📖 How to Use](#-how-to-use)
-   - [1. Creating an Account](#1-creating-an-account)
-   - [2. Deposit Funds](#2-deposit-funds)
-   - [3. Withdraw Funds](#3-withdraw-funds)
-   - [4. Transfer Funds](#4-transfer-funds)
-   - [5. Add Interest](#5-add-interest)
-   - [6. Viewing Details & Transaction History](#6-viewing-details--transaction-history)
-8. [👨‍💻 Author & Credits](#-author--credits)
+8. [👨‍💻 Author](#-author)
 
 ---
 
 ## 🎯 Project Purpose
 
-The primary goal of this project is to simulate real-world banking operations through a modular architecture:
-- **Educational & Technical Showcase:** Demonstrating advanced Object-Oriented Programming (OOP) concepts in C++ (Inheritance, Polymorphism, Dynamic Dispatch, Encapsulation, Smart Memory Management).
-- **User-Friendly Access:** Providing a high-performance, dark-themed Web GUI so non-technical users can perform visual banking simulations in real-time.
+- **Educational Showcase:** Demonstrates core OOP concepts in C++ — Inheritance, Polymorphism, Encapsulation.
+- **Web GUI:** A visual HTML/JS interface so anyone can simulate banking operations in a browser without compiling anything.
 
 ---
 
 ## ✨ Key Features
 
 ### 💳 Account Types
-- **Savings Account (`SavingsAccount`)**:
-  - Requires an initial deposit and an **Interest Rate (%)**.
-  - Built-in **Add Interest** option that calculates and adds earned interest directly to the account balance.
-- **Current Account (`CurrentAccount`)**:
-  - Tailored for business/daily transactions with an **Overdraft Limit ($)**.
-  - Allows withdrawals exceeding the active balance up to the configured overdraft ceiling (`balance + overdraftLimit`).
+- **Savings Account** — Has an Interest Rate (%). Use option `8` / Add Interest button to apply interest.
+- **Current Account** — Has an Overdraft Limit ($). Allows withdrawal beyond balance up to the overdraft ceiling.
 
-### ⚙️ Core Banking Operations
-- ➕ **Account Creation**: Prevent duplicate account numbers; dynamic form fields based on account type.
-- 💵 **Deposit**: Add money into any valid account with positive validation.
-- 🏧 **Withdraw**: Withdraw money with balance checks (and overdraft protection for Current Accounts).
-- 🔄 **Funds Transfer**: Move money safely from one sender account to a receiver account in a single operation.
-- 📈 **Interest Compounding**: Apply percentage interest to Savings accounts dynamically.
-- 📜 **Transaction History**: Audit log tracking every deposit, withdrawal, transfer, and interest application.
-- 📊 **Real-Time Accounts Ledger**: Interactive data table displaying all registered accounts, balances, types, and special parameters.
+### ⚙️ Banking Operations
+- ➕ Create Savings or Current Account
+- 💵 Deposit funds
+- 🏧 Withdraw (with overdraft support for Current Accounts)
+- 🔄 Transfer between accounts
+- 📈 Add Interest (Savings only)
+- 📜 Transaction History per account
+- 📊 Live Accounts Ledger (Web UI)
 
 ---
 
-## 🛠️ Tech Stack & Architecture
+## 🛠️ Tech Stack
 
-### 1. C++ Backend / Core Engine
-- **Language Standard**: C++14 / C++17
-- **OOP Principles Used**:
-  - **Inheritance**: `Account` (Base class) $\rightarrow$ `SavingsAccount` & `CurrentAccount` (Derived classes).
-  - **Polymorphism**: Virtual methods for `deposit()`, `withdraw()`, `showDetails()`, `getAccountType()`.
-  - **Encapsulation**: Private/Protected members (`balance`, `accountNumber`, `name`, `transactionHistory`).
-  - **Smart Pointers**: `std::vector<std::unique_ptr<Account>>` for automatic memory management.
-  - **RTTI & Casting**: `dynamic_cast<SavingsAccount*>` for type-safe interest additions.
-- **Compiler**: `g++` (MinGW-w64).
+### C++ Console App
+- `#include<bits/stdc++.h>` + `using namespace std`
+- OOP: Inheritance, Polymorphism, virtual functions
+- Basic arrays and raw pointers — no complex STL
+- Compiler: `g++` (MinGW-w64)
 
-### 2. Web GUI Dashboard
-- **HTML5**: Semantic web structure, accessible forms, font icons (FontAwesome 6.4.0), Google Fonts (Inter & JetBrains Mono).
-- **CSS3**: Custom design system featuring CSS variables, dark-mode cyber aesthetic, glowing indicators, glassmorphism containers, responsive CSS grid/flexbox layouts.
-- **JavaScript (ES6+)**: Pure Vanilla JS, using `Map()` for fast $O(1)$ account lookup state management, real-time DOM rendering, and instant feedback.
+### Web Dashboard
+- **HTML5** + **CSS3** + **Vanilla JavaScript**
+- No server needed — open directly in browser
+- `Map()` for account state management
 
 ---
 
@@ -78,20 +59,21 @@ The primary goal of this project is to simulate real-world banking operations th
 
 ```text
 BankProject/
-├── Account.h             # Base Account class header
-├── Account.cpp           # Base Account class implementation
-├── SavingsAccount.h      # SavingsAccount class header (Interest rate feature)
-├── SavingsAccount.cpp    # SavingsAccount implementation
-├── CurrentAccount.h      # CurrentAccount class header (Overdraft limit feature)
-├── CurrentAccount.cpp    # CurrentAccount implementation
-├── main.cpp              # C++ CLI Menu entry point
-├── build.bat             # Windows script to build bank.exe via g++
-├── index.html            # Web Dashboard user interface
-├── style.css             # Web Dashboard styling system
-├── app.js                # Client-side JavaScript banking engine
-├── bank.png              # Project logo / branding asset
-├── .gitignore            # Git ignore rules for build artifacts
-└── README.md             # Project documentation
+├── 1_Account.h              # Base Account class header
+├── 2_Account.cpp            # Base Account class implementation
+├── 3_SavingsAccount.h       # SavingsAccount header
+├── 4_SavingsAccount.cpp     # SavingsAccount implementation
+├── 5_CurrentAccount.h       # CurrentAccount header
+├── 6_CurrentAccount.cpp     # CurrentAccount implementation
+├── 7_main.cpp               # Main menu & program entry point
+├── build.bat                # Windows build script (runs g++)
+├── 8_demo/                  # Web Dashboard (HTML/CSS/JS)
+│   ├── index.html
+│   ├── style.css
+│   ├── app.js
+│   └── bank.png
+├── .gitignore
+└── README.md
 ```
 
 ---
@@ -100,27 +82,22 @@ BankProject/
 
 ```mermaid
 flowchart TD
-    Start([User Starts System]) --> Choice{Select Interface}
-    
-    Choice -->|CLI Terminal| CppApp[Run bank.exe]
-    Choice -->|Web GUI| WebApp[Open index.html]
-    
-    CppApp --> Menu[Console Menu Options 1-8]
-    WebApp --> GUI[Interactive Web Dashboard]
-
+    Start([User Starts]) --> Choice{Select Interface}
+    Choice -->|Terminal| CppApp[Run bank.exe]
+    Choice -->|Browser| WebApp[Open 8_demo/index.html]
+    CppApp --> Menu[Console Menu 0-8]
+    WebApp --> GUI[Web Dashboard]
     Menu --> Actions
     GUI --> Actions
-
-    subgraph Actions [Banking Logic]
-        A[Create Savings/Current Account]
-        B[Deposit Funds]
-        C[Withdraw Funds with Overdraft Check]
-        D[Inter-Account Transfer]
-        E[Calculate & Add Interest]
-        F[Generate Audit Logs & Transaction History]
+    subgraph Actions [Banking Operations]
+        A[Create Account]
+        B[Deposit]
+        C[Withdraw]
+        D[Transfer]
+        E[Add Interest]
+        F[View History]
     end
-
-    Actions --> Sync[Update State & Display Results]
+    Actions --> Result[Updated Balance & Logs]
 ```
 
 ---
@@ -129,75 +106,67 @@ flowchart TD
 
 ### Option 1: C++ Console Application
 
-#### Prerequisites:
-- A C++ Compiler (such as `g++` from MinGW-w64 or GCC) installed and added to your system `PATH`.
+**Requirement:** `g++` compiler installed and added to PATH.
 
-#### Quick Build & Run (Windows):
-1. Open Command Prompt (`cmd`) or PowerShell inside the project directory.
-2. Run the build batch file:
-   ```cmd
-   build.bat
-   ```
-3. Run the compiled executable:
-   ```cmd
-   bank.exe
-   ```
+```powershell
+.\build.bat
+.\bank.exe
+```
 
-#### Manual Compilation Command:
+**Manual compile:**
 ```bash
-g++ main.cpp Account.cpp SavingsAccount.cpp CurrentAccount.cpp -o bank.exe
-./bank.exe
+g++ 2_Account.cpp 4_SavingsAccount.cpp 6_CurrentAccount.cpp 7_main.cpp -o bank.exe
+.\bank.exe
 ```
 
 ---
 
-### Option 2: Web Dashboard Interface
+### Option 2: Web Dashboard
 
-No installation or build tools required!
+No installation needed!
 
-1. Simply double-click `index.html` or open it in any modern web browser (Google Chrome, Microsoft Edge, Mozilla Firefox, Brave, Safari).
-2. Start managing accounts directly in the visual UI.
+1. Open the `8_demo/` folder
+2. Double-click `index.html`
+3. Opens directly in any browser — Chrome, Edge, Firefox
 
 ---
 
 ## 📖 How to Use
 
-### 1. Creating an Account
-- **Web UI**: Navigate to the **"Open New Account"** card. Select **Savings** or **Current**. Enter the Account Number, Holder Name, Opening Balance, and Interest Rate (%) or Overdraft Limit ($). Click **Create Account**.
-- **CLI**: Select option `1` for Savings Account or `2` for Current Account from the main menu and follow the prompts.
+### Creating an Account
+- **CLI:** Press `1` (Savings) or `2` (Current) → enter number, name, balance, interest/overdraft
+- **Web:** Fill the form on the left → click **Create Account**
 
-### 2. Deposit Funds
-- Select your target account from the drop-down menu (or enter the account number in CLI).
-- Enter the deposit amount (or click quick presets `$10`, `$50`, `$100`, `$500` in Web UI).
-- Click **Deposit**. The updated balance and log will appear immediately.
+### Deposit
+- CLI: Press `3` → enter account number → enter amount
+- Web: Select account → enter amount → click **Deposit**
 
-### 3. Withdraw Funds
-- Select the account number and enter the withdrawal amount.
-- For **Current Accounts**, you can withdraw beyond $0 up to your approved Overdraft Limit.
-- If the amount exceeds available limits, the transaction is declined with a notification.
+### Withdraw
+- CLI: Press `4` → enter account number → enter amount
+- Web: Select account → enter amount → click **Withdraw**
+- Current accounts can withdraw up to `balance + overdraftLimit`
 
-### 4. Transfer Funds
-- Select the **Active Account** (Sender) and **Target Account** (Receiver).
-- Enter the transfer amount and click **Transfer**. Funds will be debited from the sender and credited to the receiver automatically.
+### Transfer
+- CLI: Press `5` → enter sender number → receiver number → amount
+- Web: Select Source & Target accounts → enter amount → click **Transfer**
 
-### 5. Add Interest
-- Select a **Savings Account**.
-- Click **Add Interest** (or Option `8` in CLI). Interest will be calculated based on the account's interest rate and added to the balance.
+### Add Interest
+- CLI: Press `8` → enter Savings account number
+- Web: Select Savings account → click **Add Interest**
 
-### 6. Viewing Details & Transaction History
-- **Show Details**: Displays account holder information, account type, balance, and interest/overdraft limits.
-- **Transaction History**: Displays a sequential audit log of all completed transactions for that specific account.
-- **Accounts Ledger**: The table at the bottom of the Web UI continuously displays all active accounts.
+### View Details / History
+- CLI: Press `6` for details, `7` for transaction history
+- Web: Click **Show Details** or **History Log**
 
 ---
 
-## 👨‍💻 Author & Credits
+## 👨‍💻 Author
 
-Designed, developed, and maintained with ❤️ by:
+Designed and developed by:
 
 ### **SHOEB RAZA**
 * **GitHub:** [@razashoeb840](https://github.com/razashoeb840)
-* **Project Repository:** [CPP_Bank_Account_Management_System_SHOEB_RAZA](https://github.com/razashoeb840/CPP_Bank_Account_Management_System_SHOEB_RAZA.git)
+* **Repository:** [CPP_Bank_Account_Management_System_SHOEB_RAZA](https://github.com/razashoeb840/CPP_Bank_Account_Management_System_SHOEB_RAZA.git)
 
 ---
 *Thank you for exploring the Bank Account Management System!*
